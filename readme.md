@@ -601,11 +601,11 @@ FUNC fun para num:2 stack size: 48
 
 ​		对常规的循环结构，一般的处理策略如下图，在判断条件满足后执行循环体，执行完循环体后跳转至开头进行条件判断，这样的做法最为直观，但每次循环都会执行两次跳转语句。
 
-<img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20201217213319437.png" alt="image-20201217213319437" style="zoom: 33%;" />
+<img src="./image/loop1.png" style="zoom: 33%;" />
 
 ​		若将循环结构改为如下所示，虽然第一次进入循环需要进行两次条件判断，但当循环次数较多的情况下，每次循环执行的跳转语句平均只有一条，相比上面的结构，能够减少近一半的跳转语句。
 
-<img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20201217214055846.png" alt="image-20201217214055846" style="zoom:33%;" />
+<img src="./image/loop2.png" style="zoom: 33%;" />
 
 ## 九、总结
 

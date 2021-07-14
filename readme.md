@@ -103,7 +103,7 @@
 
 ​		利用自动机来对程序进行处理，从程序中逐个读入字符，并进行相应的状态转移，对符合词法的符号进行输出，不符合文法的符号进行错误处理。
 
-<img src=".\image\词法分析.png" alt="词法分析" style="zoom:67%;" />
+<img src="https://user-images.githubusercontent.com/54872709/125600636-ff55ef8a-3c13-488b-828b-b25d2b04f672.png" alt="词法分析" style="zoom: 67%;" />
 
 ### 2.3 函数定义
 
@@ -601,11 +601,13 @@ FUNC fun para num:2 stack size: 48
 
 ​		对常规的循环结构，一般的处理策略如下图，在判断条件满足后执行循环体，执行完循环体后跳转至开头进行条件判断，这样的做法最为直观，但每次循环都会执行两次跳转语句。
 
-<img src=".\image\loop1.png" style="zoom: 33%;" />
+<img src="https://user-images.githubusercontent.com/54872709/125600707-5d4701a3-9fb8-491d-9a40-3ea40cfe887c.png" alt="loop1" style="zoom:50%;" />
+
 
 ​		若将循环结构改为如下所示，虽然第一次进入循环需要进行两次条件判断，但当循环次数较多的情况下，每次循环执行的跳转语句平均只有一条，相比上面的结构，能够减少近一半的跳转语句。
 
-<img src=".\image\loop2.png" style="zoom: 33%;" />
+<img src="https://user-images.githubusercontent.com/54872709/125600726-cd27af54-0402-4e79-b5d0-7698628529cf.png" alt="loop2" style="zoom:50%;" />
+
 
 ## 九、总结
 

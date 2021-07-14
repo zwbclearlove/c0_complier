@@ -1,0 +1,243 @@
+ARRAY INT_GLOBAL_ARRAY a size : 1000 
+ARRAY INT_GLOBAL_ARRAY seed size : 3 
+seed[0] = 19971231
+seed[1] = 19981013
+seed[2] = 1000000007
+VAR INT_GLOBAL_VAR staticvalue 0 
+FUNC_START myscanf 
+VAR INT_PARTIAL_VAR n 0 
+READ n
+RETURN n
+FUNC_END myscanf 
+FUNC_END myscanf 
+FUNC_START myprintf 
+PARA PARA INT n -858993460 
+WRITE n
+WRITE_NEW_LINE 
+RETURN 
+FUNC_END myprintf 
+FUNC_END myprintf 
+FUNC_START set 
+PARA PARA INT pos -858993460 
+PARA PARA INT d -858993460 
+ARRAY INT_PARTIAL_ARRAY x size : 31 
+VAR INT_PARTIAL_VAR i 10 
+VAR INT_PARTIAL_VAR v 0 
+x[0] = 1
+t0 = x[0]
+t1 = t0 * 2
+x[1] = t1
+t2 = x[1]
+t3 = t2 * 2
+x[2] = t3
+t4 = x[2]
+t5 = t4 * 2
+x[3] = t5
+t6 = x[3]
+t7 = t6 * 2
+x[4] = t7
+t8 = x[4]
+t9 = t8 * 2
+x[5] = t9
+t10 = x[5]
+t11 = t10 * 2
+x[6] = t11
+t12 = x[6]
+t13 = t12 * 2
+x[7] = t13
+t14 = x[7]
+t15 = t14 * 2
+x[8] = t15
+t16 = x[8]
+t17 = t16 * 2
+x[9] = t17
+t18 = x[9]
+t19 = t18 * 2
+x[10] = t19
+label_0 : 
+t20 = i - 30
+BGEZ t20 label_1
+t21 = i + 1
+i= t21
+t22 = i - 1
+t23 = x[t22]
+t24 = t23 * 2
+x[i] = t24
+JUMP label_0
+label_1 : 
+t25 = pos / 30
+t26 = t25 - 1000
+BLTZ t26 label_2
+RETURN 0
+FUNC_END set 
+label_2 : 
+t27 = pos / 30
+t28 = a[t27]
+t29 = pos / 30
+t30 = t29 * 30
+t31 = pos - t30
+t32 = x[t31]
+t33 = t28 / t32
+t34 = pos / 30
+t35 = a[t34]
+t36 = pos / 30
+t37 = t36 * 30
+t38 = pos - t37
+t39 = x[t38]
+t40 = t35 / t39
+t41 = t40 / 2
+t42 = t41 * 2
+t43 = t33 - t42
+BEQ t43 d label_3
+t44 = pos / 30
+t45 = a[t44]
+t46 = pos / 30
+t47 = t46 * 30
+t48 = pos - t47
+t49 = x[t48]
+t50 = t45 / t49
+t51 = pos / 30
+t52 = a[t51]
+t53 = pos / 30
+t54 = t53 * 30
+t55 = pos - t54
+t56 = x[t55]
+t57 = t52 / t56
+t58 = t57 / 2
+t59 = t58 * 2
+t60 = t50 - t59
+BNE t60 0 label_4
+BNE d 1 label_5
+t61 = pos / 30
+t62 = t61 * 30
+t63 = pos - t62
+t64 = x[t63]
+v= t64
+label_5 : 
+label_4 : 
+t65 = pos / 30
+t66 = a[t65]
+t67 = pos / 30
+t68 = t67 * 30
+t69 = pos - t68
+t70 = x[t69]
+t71 = t66 / t70
+t72 = pos / 30
+t73 = a[t72]
+t74 = pos / 30
+t75 = t74 * 30
+t76 = pos - t75
+t77 = x[t76]
+t78 = t73 / t77
+t79 = t78 / 2
+t80 = t79 * 2
+t81 = t71 - t80
+BNE t81 1 label_6
+BNE d 0 label_7
+t82 = pos / 30
+t83 = t82 * 30
+t84 = pos - t83
+t85 = x[t84]
+t86 = v - t85
+v= t86
+label_7 : 
+label_6 : 
+label_3 : 
+t87 = pos / 30
+t88 = pos / 30
+t89 = a[t88]
+t90 = t89 + v
+a[t87] = t90
+RETURN 0
+FUNC_END set 
+FUNC_END set 
+FUNC_START rand 
+t91 = seed[0]
+t92 = staticvalue * t91
+t93 = seed[1]
+t94 = t92 + t93
+staticvalue= t94
+t95 = seed[2]
+t96 = staticvalue / t95
+t97 = seed[2]
+t98 = t96 * t97
+t99 = staticvalue - t98
+staticvalue= t99
+t100 = staticvalue - 0
+BGEZ t100 label_8
+t101 = seed[2]
+t102 = t101 + staticvalue
+staticvalue= t102
+label_8 : 
+RETURN staticvalue
+FUNC_END rand 
+FUNC_END rand 
+MAIN_START 
+VAR INT_PARTIAL_VAR n 0 
+VAR INT_PARTIAL_VAR x 0 
+VAR INT_PARTIAL_VAR y 0 
+VAR INT_PARTIAL_VAR z 0 
+VAR INT_PARTIAL_VAR tmp 0 
+VAR INT_PARTIAL_VAR i 0 
+VAR INT_PARTIAL_VAR j 0 
+label_9 : 
+t103 = j - 1000
+BGEZ t103 label_10
+a[j] = 0
+t104 = j + 1
+j= t104
+JUMP label_9
+label_10 : 
+CALL myscanf 
+GET_RET t105
+n= t105
+CALL myscanf 
+GET_RET t106
+staticvalue= t106
+label_11 : 
+t107 = n - 0
+BLEZ t107 label_12
+t108 = n - 1
+n= t108
+CALL rand 
+GET_RET t109
+z= t109
+t110 = z / 300000
+t111 = t110 * 300000
+t112 = z - t111
+x= t112
+CALL rand 
+GET_RET t113
+z= t113
+t114 = z / 2
+t115 = t114 * 2
+t116 = z - t115
+y= t116
+PUSH x
+PUSH y
+CALL set 
+JUMP label_11
+label_12 : 
+label_13 : 
+t117 = i - 1000
+BGEZ t117 label_14
+t118 = a[i]
+t119 = a[i]
+t120 = t119 / 100000
+t121 = t120 * 100000
+t122 = t118 - t121
+t123 = tmp + t122
+tmp= t123
+t124 = tmp / 100000
+t125 = t124 * 100000
+t126 = tmp - t125
+tmp= t126
+t127 = i + 1
+i= t127
+JUMP label_13
+label_14 : 
+PUSH tmp
+CALL myprintf 
+RETURN 
+MAIN_END 
+MAIN_END 

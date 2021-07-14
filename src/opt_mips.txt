@@ -1,0 +1,37 @@
+.data
+.text
+j main
+exit:
+li $v0, 10
+syscall
+main:
+subi $sp, $sp,16
+move $fp, $sp
+la $a0, str0
+li $v0, 4
+syscall
+li $a0, 10
+li $v0, 11
+syscall
+li $s0, 0
+label_0:
+#func_main_var_i-10=func_main_tmp_t0
+subiu $t0, $s0, 10
+#store tmp var func_main_tmp_t0
+sw $t0, 4($fp)
+bgez $t0, label_1
+la $a0, str1
+li $v0, 4
+syscall
+move $a0, $s0
+li $v0, 1
+syscall
+li $a0, 10
+li $v0, 11
+syscall
+#func_main_var_i+1=func_main_var_i
+addiu $s0, $s0, 1
+j label_0
+label_1:
+addi $sp, $sp, 16
+j exit

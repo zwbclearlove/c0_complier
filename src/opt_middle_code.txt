@@ -1,0 +1,385 @@
+CONST INT_GLOBAL_CONST max 1073741824 
+ARRAY INT_GLOBAL_ARRAY a size : 1000 
+ARRAY INT_GLOBAL_ARRAY b size : 1000 
+ARRAY INT_GLOBAL_ARRAY kernelid size : 40 
+FUNC_START myscanf 
+VAR INT_PARTIAL_VAR n 0 
+READ n
+RETURN n
+FUNC_END myscanf 
+FUNC_END myscanf 
+FUNC_START myprintf 
+PARA PARA INT n 
+WRITE n
+WRITE_NEW_LINE 
+RETURN 
+FUNC_END myprintf 
+FUNC_END myprintf 
+FUNC_START checkrange 
+PARA PARA INT num 
+t0 = num - 1073741824
+BLEZ t0 label_1
+label_0 : 
+t1 = num - 1073741824
+num= t1
+t0 = num - 1073741824
+BGTZ t0 label_0
+label_1 : 
+BGEZ num label_3
+label_2 : 
+t3 = num + 1073741824
+num= t3
+BLTZ num label_2
+label_3 : 
+RETURN num
+FUNC_END checkrange 
+FUNC_END checkrange 
+FUNC_START reduce 
+PARA PARA INT kernelid 
+PARA PARA INT x 
+PARA PARA INT y 
+VAR INT_PARTIAL_VAR ret 0 
+VAR INT_PARTIAL_VAR i 0 
+BNE kernelid 0 label_4
+t4 = x + y
+PUSH t4
+CALL checkrange 
+GET_RET t5
+RETURN t5
+FUNC_END reduce 
+label_4 : 
+BNE kernelid 1 label_5
+ret= 0
+i= 1
+t6 = i - 1073741824
+BGEZ t6 label_7
+label_6 : 
+t7 = x / i
+t8 = x / i
+t9 = t8 / 2
+t10 = t9 * 2
+t11 = t7 - t10
+t12 = y / i
+t13 = y / i
+t14 = t13 / 2
+t15 = t14 * 2
+t16 = t12 - t15
+BNE t11 t16 label_8
+t17 = ret * 2
+ret= t17
+JUMP label_9
+label_8 : 
+t18 = ret * 2
+t19 = t18 + 1
+ret= t19
+label_9 : 
+t20 = i * 2
+i= t20
+t6 = i - 1073741824
+BLTZ t6 label_6
+label_7 : 
+RETURN ret
+FUNC_END reduce 
+label_5 : 
+BNE kernelid 2 label_10
+t21 = x - y
+BLEZ t21 label_11
+RETURN x
+FUNC_END reduce 
+JUMP label_12
+label_11 : 
+RETURN y
+FUNC_END reduce 
+label_12 : 
+label_10 : 
+BNE kernelid 3 label_13
+ret= 0
+i= 1
+t22 = i - 1073741824
+BGEZ t22 label_15
+label_14 : 
+t23 = x / i
+t24 = x / i
+t25 = t24 / 2
+t26 = t25 * 2
+t27 = t23 - t26
+BNE t27 1 label_16
+t28 = ret * 2
+t29 = t28 + 1
+ret= t29
+JUMP label_17
+label_16 : 
+t30 = y / i
+t31 = y / i
+t32 = t31 / 2
+t33 = t32 * 2
+t34 = t30 - t33
+BNE t34 1 label_18
+t35 = ret * 2
+t36 = t35 + 1
+ret= t36
+label_18 : 
+t37 = ret * 2
+ret= t37
+label_17 : 
+t38 = i * 2
+i= t38
+t22 = i - 1073741824
+BLTZ t22 label_14
+label_15 : 
+RETURN ret
+FUNC_END reduce 
+label_13 : 
+BNE kernelid 4 label_19
+ret= 0
+i= 1
+t39 = i - 1073741824
+BGEZ t39 label_21
+label_20 : 
+t40 = x / i
+t41 = x / i
+t42 = t41 / 2
+t43 = t42 * 2
+t44 = t40 - t43
+BNE t44 1 label_22
+t45 = y / i
+t46 = y / i
+t47 = t46 / 2
+t48 = t47 * 2
+t49 = t45 - t48
+BNE t49 1 label_23
+t50 = ret * 2
+t51 = t50 + 1
+ret= t51
+JUMP label_24
+label_23 : 
+t52 = ret * 2
+ret= t52
+label_24 : 
+JUMP label_25
+label_22 : 
+t53 = ret * 2
+ret= t53
+label_25 : 
+t54 = i * 2
+i= t54
+t39 = i - 1073741824
+BLTZ t39 label_20
+label_21 : 
+RETURN ret
+FUNC_END reduce 
+label_19 : 
+RETURN 0
+FUNC_END reduce 
+FUNC_END reduce 
+FUNC_START getvalue 
+PARA PARA INT n 
+PARA PARA INT m 
+PARA PARA INT x 
+PARA PARA INT y 
+BGEZ x label_26
+RETURN 0
+FUNC_END getvalue 
+label_26 : 
+BGEZ y label_27
+RETURN 0
+FUNC_END getvalue 
+label_27 : 
+t57 = x - n
+BLTZ t57 label_28
+RETURN 0
+FUNC_END getvalue 
+label_28 : 
+t58 = y - m
+BLTZ t58 label_29
+RETURN 0
+FUNC_END getvalue 
+label_29 : 
+t59 = x * m
+t60 = t59 + y
+t61 = a[t60]
+RETURN t61
+FUNC_END getvalue 
+FUNC_END getvalue 
+FUNC_START convn 
+PARA PARA INT kernelid 
+PARA PARA INT n 
+PARA PARA INT m 
+PARA PARA INT c 
+VAR INT_PARTIAL_VAR i 0 
+VAR INT_PARTIAL_VAR j 0 
+VAR INT_PARTIAL_VAR x 0 
+VAR INT_PARTIAL_VAR y 0 
+VAR INT_PARTIAL_VAR curr 0 
+VAR INT_PARTIAL_VAR flag1 1 
+VAR INT_PARTIAL_VAR flag2 1 
+VAR INT_PARTIAL_VAR flag3 1 
+VAR INT_PARTIAL_VAR flag4 1 
+BNE flag1 1 label_31
+label_30 : 
+j= 0
+BNE flag2 1 label_33
+label_32 : 
+curr= 0
+t62 = c / 2
+t63 = i - t62
+x= t63
+BNE flag3 1 label_35
+label_34 : 
+t64 = c / 2
+t65 = j - t64
+y= t65
+BNE flag4 1 label_37
+label_36 : 
+PUSH kernelid
+PUSH curr
+PUSH n
+PUSH m
+PUSH x
+PUSH y
+CALL getvalue 
+GET_RET t66
+PUSH t66
+CALL reduce 
+GET_RET t67
+curr= t67
+t68 = y + 1
+y= t68
+t69 = c / 2
+t70 = j + t69
+t71 = y - t70
+BLTZ t71 label_38
+flag4= 0
+label_38 : 
+BEQ flag4 1 label_36
+label_37 : 
+flag4= 1
+t72 = x + 1
+x= t72
+t73 = c / 2
+t74 = i + t73
+t75 = x - t74
+BLTZ t75 label_39
+flag3= 0
+label_39 : 
+BEQ flag3 1 label_34
+label_35 : 
+flag3= 1
+t76 = i * m
+t77 = t76 + j
+b[t77] = curr
+t78 = j + 1
+j= t78
+t79 = j - m
+BLTZ t79 label_40
+flag2= 0
+label_40 : 
+BEQ flag2 1 label_32
+label_33 : 
+flag2= 1
+t80 = i + 1
+i= t80
+t81 = i - n
+BLTZ t81 label_41
+flag1= 0
+label_41 : 
+BEQ flag1 1 label_30
+label_31 : 
+RETURN 0
+FUNC_END convn 
+FUNC_END convn 
+FUNC_START mymemmove 
+PARA PARA INT n 
+VAR INT_PARTIAL_VAR i 0 
+t82 = i - n
+BGEZ t82 label_43
+label_42 : 
+t83 = b[i]
+a[i] = t83
+t84 = i + 1
+i= t84
+t82 = i - n
+BLTZ t82 label_42
+label_43 : 
+FUNC_END mymemmove 
+MAIN_START 
+VAR INT_PARTIAL_VAR c 0 
+VAR INT_PARTIAL_VAR n 0 
+VAR INT_PARTIAL_VAR m 0 
+VAR INT_PARTIAL_VAR task 0 
+VAR INT_PARTIAL_VAR arrlen 0 
+VAR INT_PARTIAL_VAR tmp 0 
+VAR INT_PARTIAL_VAR i 0 
+CALL myscanf 
+GET_RET t85
+c= t85
+CALL myscanf 
+GET_RET t86
+n= t86
+CALL myscanf 
+GET_RET t87
+m= t87
+CALL myscanf 
+GET_RET t88
+arrlen= t88
+t89 = i - arrlen
+BGEZ t89 label_45
+label_44 : 
+CALL myscanf 
+GET_RET t90
+a[i] = t90
+t91 = i + 1
+i= t91
+t89 = i - arrlen
+BLTZ t89 label_44
+label_45 : 
+CALL myscanf 
+GET_RET t92
+task= t92
+i= 0
+t93 = i - task
+BGEZ t93 label_47
+label_46 : 
+CALL myscanf 
+GET_RET t94
+kernelid[i] = t94
+t95 = i + 1
+i= t95
+t93 = i - task
+BLTZ t93 label_46
+label_47 : 
+i= 0
+t96 = i - task
+BGEZ t96 label_49
+label_48 : 
+t97 = kernelid[i]
+PUSH t97
+PUSH n
+PUSH m
+PUSH c
+CALL convn 
+t98 = n * m
+PUSH t98
+CALL mymemmove 
+t99 = i + 1
+i= t99
+t96 = i - task
+BLTZ t96 label_48
+label_49 : 
+i= 0
+t100 = n * m
+t101 = i - t100
+BGEZ t101 label_51
+label_50 : 
+t102 = a[i]
+PUSH t102
+CALL myprintf 
+t103 = i + 1
+i= t103
+t100 = n * m
+t101 = i - t100
+BLTZ t101 label_50
+label_51 : 
+RETURN 
+MAIN_END 
+MAIN_END 
